@@ -5,7 +5,7 @@
  * Author: Roberto Armellin (r.armellin@tin.it)
  * Copyright: (c) 2004 Roberto Armellin, Nigel McNie (http://qbnz.com/highlighter/)
  * Release Version: 1.0.6
- * CVS Revision Version: $Revision: 1.1 $
+ * CVS Revision Version: $Revision: 1.1.1.1.2.1 $
  * Date Started: 2004/09/17
  * Last Modified: 2004/09/18
  *
