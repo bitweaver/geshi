@@ -28,7 +28,7 @@
  * @author    Nigel McNie <nigel@geshi.org>
  * @copyright Copyright &copy; 2004, 2005, Nigel McNie
  * @license   http://gnu.org/copyleft/gpl.html GNU GPL
- * @version   $Id: geshi.php,v 1.1 2005/06/21 12:57:51 bitweaver Exp $
+ * @version   $Id: geshi.php,v 1.2 2005/07/25 20:02:56 squareing Exp $
  *
  */
 
@@ -1511,7 +1511,7 @@ class GeSHi
 						}
 					}
 
-					if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
+					if ( !empty( $this->language_data['STYLES']['SCRIPT'][$script_key] ) &&
                         $this->lexic_permissions['SCRIPT']) {
 						// Add a span element around the source to
 						// highlight the overall source block
