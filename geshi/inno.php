@@ -1,26 +1,22 @@
 <?php
 /*************************************************************************************
- * delphi.php
+ * Inno.php
  * ----------
- * Author: Járja Norbert (jnorbi@vipmail.hu)
+ * Author: Thomas Klingler (hotline@theratech.de) based on delphi.php from Járja Norbert (jnorbi@vipmail.hu)
  * Copyright: (c) 2004 Járja Norbert, Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.1.1.1.2.2 $
- * Date Started: 2004/07/26
+ * CVS Revision Version: $Revision: 1.1.2.1 $
+ * Date Started: 2005/07/29
  * Last Modified: $Date: 2006/01/05 12:17:43 $
  *
- * Delphi (Object Pascal) language file for GeSHi.
+ * Inno Script language inkl. Delphi (Object Pascal) language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2005/09/03 (1.0.2)
- *   -  Added support for hex numbers and string entities
- * 2004/11/27 (1.0.1)
- *   -  Added support for multiple object splitters
- * 2004/10/27 (1.0.0)
+ * 2005/09/03
  *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2005/07/27)
  * -------------------------
  *
  *************************************************************************************
@@ -44,21 +40,43 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'Delphi',
+	'LANG_NAME' => 'Inno',
 	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
+	'COMMENT_MULTI' => array('(*' => '*)'),
 	'CASE_KEYWORDS' => 0,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
-		1 => array(
-			'And', 'Array', 'As', 'Begin', 'Case', 'Class', 'Constructor', 'Destructor', 'Div', 'Do', 'DownTo', 'Else',
-			'End', 'Except', 'File', 'Finally', 'For', 'Function', 'Goto', 'If', 'Implementation', 'In', 'Inherited', 'Interface',
-			'Is', 'Mod', 'Not', 'Object', 'Of', 'On', 'Or', 'Packed', 'Procedure', 'Program', 'Property', 'Raise', 'Record',
-			'Repeat', 'Set', 'Shl', 'Shr', 'Then', 'ThreadVar', 'To', 'Try', 'Unit', 'Until', 'Uses', 'While', 'With', 'Xor'
+		1 => array('Setup','Types','Components','Tasks','Dirs','Files','Icons','INI','InstallDelete','Languages','Messages',
+					'CustomMessage','LangOptions','Registry','RUN','UninstallDelete','UninstallRun'
+					,'app','win','sys','syswow64','src','sd','pf','pf32','pf64','cf','cf32','cf64','tmp','fonts','dao',
+					'group','localappdata','sendto','userappdata','commonappdata','userdesktop','commondesktop','userdocs',
+					'commondocs','userfavorites','commonfavorites','userprograms','commonprograms','userstartmenu',
+					'commonstartmenu','userstartup','commonstartup','usertemplates','commontemplates'
 			),
 		2 => array(
-			'nil', 'false', 'true', 'var', 'type', 'const'
+			'nil', 'false', 'true', 'var', 'type', 'const','And', 'Array', 'As', 'Begin', 'Case', 'Class', 'Constructor', 'Destructor', 'Div', 'Do', 'DownTo', 'Else',
+			'End', 'Except', 'File', 'Finally', 'For', 'Function', 'Goto', 'If', 'Implementation', 'In', 'Inherited', 'Interface',
+			'Is', 'Mod', 'Not', 'Object', 'Of', 'On', 'Or', 'Packed', 'Procedure', 'Property', 'Raise', 'Record',
+			'Repeat', 'Set', 'Shl', 'Shr', 'Then', 'ThreadVar', 'To', 'Try', 'Unit', 'Until', 'Uses', 'While', 'With', 'Xor',
+			
+			'HKCC','HKCR','HKCU','HKLM','HKU','alwaysoverwrite','alwaysskipifsameorolder','append',
+			'binary','classic','closeonexit','comparetimestamp','confirmoverwrite',
+			'createkeyifdoesntexist','createonlyiffileexists','createvalueifdoesntexist',
+			'deleteafterinstall','deletekey','deletevalue','dirifempty','dontcloseonexit',
+			'dontcopy','dontcreatekey','disablenouninstallwarning','dword','exclusive','expandsz',
+			'external','files','filesandordirs','fixed','fontisnttruetype','ignoreversion','iscustom','isreadme',
+			'modern','multisz','new','noerror','none','normal','nowait','onlyifdestfileexists',
+			'onlyifdoesntexist','onlyifnewer','overwrite','overwritereadonly','postinstall',
+			'preservestringtype','promptifolder','regserver','regtypelib','restart','restartreplace',
+			'runhidden','runmaximized','runminimized','sharedfile','shellexec','showcheckbox',
+			'skipifnotsilent','skipifsilent','silent','skipifdoesntexist',
+			'skipifsourcedoesntexist','sortfilesbyextension','unchecked','uninsalwaysuninstall',
+			'uninsclearvalue','uninsdeleteentry','uninsdeletekey','uninsdeletekeyifempty',
+			'uninsdeletesection','uninsdeletesectionifempty','uninsdeletevalue',
+			'uninsneveruninstall','useapppaths','verysilent','waituntilidle'
+
+			
 			),
 		3 => array(
 			'Abs', 'Addr', 'AnsiCompareStr', 'AnsiCompareText', 'AnsiContainsStr', 'AnsiEndsStr', 'AnsiIndexStr', 'AnsiLeftStr',
@@ -80,14 +98,46 @@ $language_data = array (
 			'Slice', 'Sqr', 'Sqrt', 'StringOfChar', 'StringReplace', 'StringToWideChar', 'StrToCurr', 'StrToDate', 'StrToDateTime',
 			'StrToFloat', 'StrToInt', 'StrToInt64', 'StrToInt64Def', 'StrToIntDef', 'StrToTime', 'StuffString', 'Succ', 'Sum', 'Tan',
 			'Time', 'TimeToStr', 'Tomorrow', 'Trunc', 'UpCase', 'UpperCase', 'VarType', 'WideCharToString', 'WrapText', 'Yesterday',
-
 			'Append', 'AppendStr', 'Assign', 'AssignFile', 'AssignPrn', 'Beep', 'BlockRead', 'BlockWrite', 'Break',
 			'ChDir', 'Close', 'CloseFile', 'Continue', 'DateTimeToString', 'Dec', 'DecodeDate', 'DecodeDateTime',
 			'DecodeTime', 'Delete', 'Dispose', 'EndThread', 'Erase', 'Exclude', 'Exit', 'FillChar', 'Flush', 'FreeAndNil',
 			'FreeMem', 'GetDir', 'GetLocaleFormatSettings', 'Halt', 'Inc', 'Include', 'Insert', 'MkDir', 'Move', 'New',
 			'ProcessPath', 'Randomize', 'Read', 'ReadLn', 'ReallocMem', 'Rename', 'ReplaceDate', 'ReplaceTime',
 			'Reset', 'ReWrite', 'RmDir', 'RunError', 'Seek', 'SetLength', 'SetString', 'ShowMessage', 'ShowMessageFmt',
-			'ShowMessagePos', 'Str', 'Truncate', 'Val', 'Write', 'WriteLn'
+			'ShowMessagePos', 'Str', 'Truncate', 'Val', 'Write', 'WriteLn',
+			
+			'AdminPrivilegesRequired','AfterInstall','AllowCancelDuringInstall','AllowNoIcons','AllowRootDirectory','AllowUNCPath','AlwaysRestart','AlwaysShowComponentsList','AlwaysShowDirOnReadyPage','AlwaysShowGroupOnReadyPage ','AlwaysUsePersonalGroup','AppComments','AppContact','AppCopyright','AppendDefaultDirName',
+			'AppendDefaultGroupName','AppId','AppModifyPath','AppMutex','AppName','AppPublisher',
+			'AppPublisherURL','AppReadmeFile','AppSupportURL','AppUpdatesURL','AppVerName','AppVersion',
+			'Attribs','BackColor','BackColor2','BackColorDirection','BackSolid','BeforeInstall',
+			'ChangesAssociations','ChangesEnvironment','Check','CodeFile','Comment','Components','Compression','CopyMode',
+			'CreateAppDir','CreateUninstallRegKey','DefaultDirName','DefaultGroupName',
+			'DefaultUserInfoName','DefaultUserInfoOrg','DefaultUserInfoSerial',
+			'Description','DestDir','DestName','DirExistsWarning',
+			'DisableDirPage','DisableFinishedPage',
+			'DisableProgramGroupPage','DisableReadyMemo','DisableReadyPage',
+			'DisableStartupPrompt','DiskClusterSize','DiskSliceSize','DiskSpaceMBLabel',
+			'DiskSpanning','DontMergeDuplicateFiles','EnableDirDoesntExistWarning','Encryption',
+			'Excludes','ExtraDiskSpaceRequired','Filename','Flags','FlatComponentsList','FontInstall',
+			'GroupDescription','HotKey','IconFilename','IconIndex','InfoAfterFile','InfoBeforeFile',
+			'InternalCompressLevel','Key','LanguageDetectionMethod','Languages',
+			'LicenseFile','MergeDuplicateFiles','MessagesFile','MinVersion','Name',
+			'OnlyBelowVersion','OutputBaseFilename','OutputManifestFile','OutputDir',
+			'Parameters','Password','Permissions','PrivilegesRequired','ReserveBytes',
+			'RestartIfNeededByRun','Root','RunOnceId','Section','SetupIconFile',
+			'ShowComponentSizes','ShowLanguageDialog','ShowTasksTreeLines','SlicesPerDisk',
+			'SolidCompression','Source','SourceDir','StatusMsg','Subkey','Tasks',
+			'TimeStampRounding','TimeStampsInUTC','TouchDate','TouchTime','Type','Types',
+			'UninstallDisplayIcon','UninstallDisplayName','UninstallFilesDir','UninstallIconFile',
+			'UninstallLogMode','UninstallRestartComputer','UninstallStyle','Uninstallable',
+			'UpdateUninstallLogAppName','UsePreviousAppDir','UsePreviousGroup',
+			'UsePreviousTasks','UsePreviousSetupType','UsePreviousUserInfo',
+			'UserInfoPage','UseSetupLdr','ValueData','ValueName','ValueType',
+			'VersionInfoVersion','VersionInfoCompany','VersionInfoDescription','VersionInfoTextVersion',
+			'WindowResizable','WindowShowCaption','WindowStartMaximized',
+			'WindowVisible','WizardImageBackColor','WizardImageFile','WizardImageStretch','WizardSmallImageBackColor','WizardSmallImageFile','WizardStyle','WorkingDir'
+
+			
 			),
 		4 => array(
 			'AnsiChar', 'AnsiString', 'Boolean', 'Byte', 'Cardinal', 'Char', 'Comp', 'Currency', 'Double', 'Extended',
@@ -99,6 +149,10 @@ $language_data = array (
 			'TThreadFunc', 'Variant', 'WideChar', 'WideString', 'Word'
 			),
 		),
+	'SYMBOLS' => array(
+		'(', ')', '[', ']', '{', '}', '@', '%', '&', '*', '|', '/', '<', '>'
+		),	
+		
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
 		1 => false,
@@ -108,14 +162,14 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #000000; font-weight: bold;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #000066;',
-			4 => 'color: #993333;'
+			1 => 'color: #000000; font-weight: bold;',/*bold Black*/
+			2 => 'color: #000000;font-style: italic;',/*Black*/
+			3 => 'color: #0000FF;',/*blue*/
+			4 => 'color: #CC0000;'/*red*/
 			),
 		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			'MULTI' => 'color: #808080; font-style: italic;'
+			1 => 'color: #33FF00; font-style: italic;',
+			'MULTI' => 'color: #33FF00; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
 			),
@@ -132,11 +186,9 @@ $language_data = array (
 			1 => 'color: #006600;'
 			),
 		'REGEXPS' => array(
-            0 => 'color: #9ac;',
-            1 => 'color: #ff0000;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color:  #000000; font-weight: bold;',
 			),
 		'SCRIPT' => array(
 			)
@@ -152,8 +204,6 @@ $language_data = array (
 		1 => '.'
 		),
 	'REGEXPS' => array(
-        0 => '\$[0-9a-fA-F]+',
-        1 => '\#\$?[0-9]{1,3}'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(

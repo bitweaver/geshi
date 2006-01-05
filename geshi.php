@@ -28,7 +28,7 @@
  * @author    Nigel McNie <nigel@geshi.org>
  * @copyright Copyright &copy; 2004, 2005, Nigel McNie
  * @license   http://gnu.org/copyleft/gpl.html GNU GPL
- * @version   $Id: geshi.php,v 1.1.1.1.2.1 2005/07/17 19:31:20 bitweaver Exp $
+ * @version   $Id: geshi.php,v 1.1.1.1.2.2 2006/01/05 12:17:42 squareing Exp $
  *
  */
 
@@ -40,7 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7');
+define('GESHI_VERSION', '1.0.7.5');
 
 /** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
@@ -67,9 +67,11 @@ define('GESHI_NORMAL_LINE_NUMBERS', 1);
 define('GESHI_FANCY_LINE_NUMBERS', 2);
 
 // Container HTML type
-/** Use a <div> to surround the source */
+/** Use nothing to surround the source */
+define('GESHI_HEADER_NONE', 0);
+/** Use a "div" to surround the source */
 define('GESHI_HEADER_DIV', 1);
-/** Use a <pre> to surround the source */
+/** Use a "pre" to surround the source */
 define('GESHI_HEADER_PRE', 2);
 
 // Capatalisation constants
@@ -284,6 +286,7 @@ class GeSHi
     /**
      * Whether important blocks should be recognised or not
      * @var boolean
+     * @deprecated
      * @todo REMOVE THIS FUNCTIONALITY!
      */
 	var $enable_important_blocks = false;
@@ -291,6 +294,7 @@ class GeSHi
     /**
      * Styles for important parts of the code
      * @var string
+     * @deprecated
      * @todo As above - rethink the whole idea of important blocks as it is buggy and
      * will be hard to implement in 1.2
      */
@@ -513,17 +517,20 @@ class GeSHi
 	/**
 	 * Sets the type of header to be used.
      * 
-     * If GESHI_HEADER_DIV is used, the code is surrounded in a <div>.This
+     * If GESHI_HEADER_DIV is used, the code is surrounded in a "div".This
      * means more source code but more control over tab width and line-wrapping.
-     * GESHI_HEADER_PRE means that a <pre> is used - less source, but less
+     * GESHI_HEADER_PRE means that a "pre" is used - less source, but less
      * control. Default is GESHI_HEADER_PRE.
+     * 
+     * From 1.0.7.2, you can use GESHI_HEADER_NONE to specify that no header code
+     * should be outputted.
      * 
      * @param int The type of header to be used
      * @since 1.0.0
 	 */
 	function set_header_type ($type)
 	{
-        if (GESHI_HEADER_DIV != $type && GESHI_HEADER_PRE != $type) {
+        if (GESHI_HEADER_DIV != $type && GESHI_HEADER_PRE != $type && GESHI_HEADER_NONE != $type) {
             $this->error = GESHI_ERROR_INVALID_HEADER_TYPE;
             return;
         }
@@ -777,7 +784,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['BRACKETS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['BRACKETS'][0] = $style;
+			$this->language_data['STYLES']['BRACKETS'][0] .= $style;
 		}
 	}
 
@@ -811,7 +818,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
+			$this->language_data['STYLES']['SYMBOLS'][0] .= $style;
 		}
 		// For backward compatibility
 		$this->set_brackets_style ($style, $preserve_defaults);
@@ -845,7 +852,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['STRINGS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['STRINGS'][0] = $style;
+			$this->language_data['STYLES']['STRINGS'][0] .= $style;
 		}
 	}
 
@@ -875,7 +882,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['NUMBERS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['NUMBERS'][0] = $style;
+			$this->language_data['STYLES']['NUMBERS'][0] .= $style;
 		}
 	}
 
@@ -938,7 +945,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
 		} else {
-			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
+			$this->language_data['STYLES']['REGEXPS'][$key] .= $style;
 		}
 	}
 
@@ -1300,6 +1307,7 @@ class GeSHi
 	 * Sets whether context-important blocks are highlighted
      * 
      * @todo REMOVE THIS SHIZ FROM GESHI!
+     * @deprecated
 	 */
 	function enable_important_blocks ( $flag )
 	{
@@ -1511,7 +1519,7 @@ class GeSHi
 						}
 					}
 
-					if ( !empty( $this->language_data['STYLES']['SCRIPT'][$script_key] ) &&
+					if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
                         $this->lexic_permissions['SCRIPT']) {
 						// Add a span element around the source to
 						// highlight the overall source block
@@ -1585,6 +1593,12 @@ class GeSHi
 										$attributes = ' class="es0"';
 									}
 									$char = "<span$attributes>" . $char;
+                                    if (substr($code, $i + 1, 1) == "\n") {
+                                        // escaping a newline, what's the point in putting the span around
+                                        // the newline? It only causes hassles when inserting line numbers
+                                        $char .= '</span>';
+                                        $ESCAPE_CHAR_OPEN = false;
+                                    }
 								}
 							} else {
 								$ESCAPE_CHAR_OPEN = false;
@@ -1682,14 +1696,19 @@ class GeSHi
 											$test_str = @htmlspecialchars($test_str, ENT_COMPAT, $this->encoding);
 										}
 										$close_pos = strpos($part, "\n", $i);
+                                        $oops = false;
 										if ($close_pos === false) {
 											$close_pos = strlen($part);
+                                            $oops = true;
 										}
 										$test_str .= @htmlspecialchars(substr($part, $i + $com_len, $close_pos - $i - $com_len), ENT_COMPAT, $this->encoding);
 										if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
 											$test_str .= "</span>";
 										}
-										$test_str .= "\n";
+                                        // Take into account that the comment might be the last in the source
+                                        if (!$oops) { 
+										  $test_str .= "\n";
+                                        }
 										$i = $close_pos;
 										// parse the rest
 										$result .= $this->parse_non_string_part($stuff_to_parse);
@@ -1730,7 +1749,8 @@ class GeSHi
 					$result .= @htmlspecialchars($part, ENT_COMPAT, $this->encoding);
 				}
 				// Close the <span> that surrounds the block
-				if ($this->strict_mode && $this->lexic_permissions['SCRIPT']) {
+				if ($this->strict_mode && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
+                    $this->lexic_permissions['SCRIPT']) {
 					$result .= '</span>';
 				}
 			} else {
@@ -1886,7 +1906,7 @@ class GeSHi
 	 */
 	function add_url_to_keyword ($keyword, $group, $start_or_end)
 	{
-		if (isset($this->language_data['URLS'][$group]) &&
+        if (isset($this->language_data['URLS'][$group]) &&
             $this->language_data['URLS'][$group] != '' &&
             substr($keyword, 0, 5) != '&lt;/') {
 			// There is a base group for this keyword
@@ -1904,7 +1924,8 @@ class GeSHi
                         ) . '">';
 				}
 				return '';
-			} else {
+            // HTML fix. Again, dirty hackage...
+			} elseif (!($this->language == 'html4strict' && '&gt;' == $keyword)) {
 				return '</a>';
 			}
 		}
@@ -1979,14 +2000,14 @@ class GeSHi
 							$keyword = quotemeta($keyword);
 							if ($this->language_data['CASE_SENSITIVE'][$k]) {
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#e",
+                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#e",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
                                     $stuff_to_parse
                                 );
 							} else {
 								// Change the case of the word.
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#ie",
+                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#ie",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
                                     $stuff_to_parse
                                 );
@@ -2135,6 +2156,7 @@ class GeSHi
 	 */
 	function load_language ($file_name)
 	{
+        $language_data = array();
 		require $file_name;
 		// Perhaps some checking might be added here later to check that
 		// $language data is a valid thing but maybe not
@@ -2179,7 +2201,7 @@ class GeSHi
         }
         
         // Add HTML whitespace stuff if we're using the <div> header
-        if ($this->header_type == GESHI_HEADER_DIV) {
+        if ($this->header_type != GESHI_HEADER_PRE) {
             $parsed_code = $this->indent($parsed_code);
         }
         
@@ -2216,13 +2238,12 @@ class GeSHi
             		$end = '</div>';
             	} else {
             		if ($this->use_classes) {
+                        $attr = ' class="li1"';
             			$def_attr = ' class="de1"';
             		} else {
+                        $attr = ' style="' . $this->line_style1 . '"';
             			$def_attr = ' style="' . $this->code_style . '"';
             		}
-            		// Reset everything
-            		$attr = '';
-            		// Span or div?
             		$start = "<div$def_attr>";
             		$end = '</div>';
             	}
@@ -2298,6 +2319,13 @@ class GeSHi
 		// Get the header HTML
 		$header = $this->format_header_content();
 
+        if (GESHI_HEADER_NONE == $this->header_type) {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "$header<ol$ol_attributes>";
+            }
+            return $header;
+        }
+        
 		// Work out what to return and do it
 		if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 			if ($this->header_type == GESHI_HEADER_PRE) {
@@ -2350,6 +2378,11 @@ class GeSHi
 	{
 		$footer_content = $this->format_footer_content();
 
+        if (GESHI_HEADER_NONE == $this->header_type) {
+            return ($this->line_numbers != GESHI_NO_LINE_NUMBERS) ? '</ol>' . $footer_content
+                : $footer_content;
+        }
+        
 		if ($this->header_type == GESHI_HEADER_DIV) {
 			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</ol>$footer_content</div>";
@@ -2382,7 +2415,7 @@ class GeSHi
 			if ($this->use_classes) {
 				$attr = ' class="foot"';
 			} else {
-				$attr = " style=\"{$this->footer_content_style}\">";
+				$attr = " style=\"{$this->footer_content_style}\"";
 			}
 			return "<div$attr>$footer</div>";
 		}
@@ -2600,11 +2633,11 @@ if (!function_exists('geshi_highlight')) {
 	function geshi_highlight ($string, $language, $path, $return = false)
 	{
 		$geshi = new GeSHi($string, $language, $path);
-		$geshi->set_header_type(GESHI_HEADER_DIV);
+		$geshi->set_header_type(GESHI_HEADER_NONE);
 		if ($return) {
-			return str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
+			return '<code>' . $geshi->parse_code() . '</code>';
 		}
-		echo str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
+		echo '<code>' . $geshi->parse_code() . '</code>';
 		if ($geshi->error()) {
 			return false;
 		}

@@ -4,10 +4,10 @@
  * --------
  * Author: M. Uli Kusterer (witness.of.teachtext@gmx.net)
  * Copyright: (c) 2004 M. Uli Kusterer, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.6
- * CVS Revision Version: $Revision: 1.1 $
+ * Release Version: 1.0.7.5
+ * CVS Revision Version: $Revision: 1.1.1.1.2.1 $
  * Date Started: 2004/06/04
- * Last Modified: $Date: 2005/06/21 12:57:52 $
+ * Last Modified: $Date: 2006/01/05 12:17:43 $
  *
  * Objective C language file for GeSHi.
  *
