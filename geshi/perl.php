@@ -4,10 +4,10 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org), Ben Keen (ben.keen@gmail.com)
  * Copyright: (c) 2004 Andreas Gohr, Ben Keen (http://www.benjaminkeen.org/), Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.6
- * CVS Revision Version: $Revision: 1.1 $
+ * Release Version: 1.0.7.5
+ * CVS Revision Version: $Revision: 1.2 $
  * Date Started: 2004/08/20
- * Last Modified: $Date: 2005/06/21 12:57:52 $
+ * Last Modified: $Date: 2006/01/10 21:18:17 $
  *
  * Perl language file for GeSHi.
  *

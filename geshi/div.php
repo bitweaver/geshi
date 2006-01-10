@@ -1,35 +1,24 @@
 <?php
 /*************************************************************************************
- * c.php
- * -----
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
- * Contributors:
- *  - Jack Lloyd (lloyd@randombit.net)
- * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
+ * div.php
+ * ---------------------------------
+ * Author: Gabriel Lorenzo (ermakina@gmail.com)
+ * Copyright: (c) 2005 Gabriel Lorenzo (http://ermakina.gazpachito.net)
  * Release Version: 1.0.7.5
  * CVS Revision Version: $Revision: 1.2 $
- * Date Started: 2004/06/04
+ * Date Started: 2005/06/19
  * Last Modified: $Date: 2006/01/10 21:18:16 $
  *
- * C language file for GeSHi.
+ * DIV language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2004/XX/XX (1.0.4)
- *   -  Added a couple of new keywords (Jack Lloyd)
- * 2004/11/27 (1.0.3)
- *   -  Added support for multiple object splitters
- * 2004/10/27 (1.0.2)
- *   -  Added support for URLs
- * 2004/08/05 (1.0.1)
- *   -  Added support for symbols
- * 2004/07/14 (1.0.0)
- *   -  First Release
+ * 2005/06/22 (1.0.0)
+ *  -  First Release, includes "2nd gen" ELSEIF statement
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2005/06/22)
  * -------------------------
- *  -  Get a list of inbuilt functions to add (and explore C more
- *     to complete this rather bare language file
+ *  -  I'm pretty satisfied with this, so nothing for now... :P
  *
  *************************************************************************************
  *
@@ -52,34 +41,34 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'C',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
+	'LANG_NAME' => 'DIV',
+	'COMMENT_SINGLE' => array(1 => '//'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
 	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
+	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
 		1 => array(
-			'if', 'return', 'while', 'case', 'continue', 'default',
-			'do', 'else', 'for', 'switch', 'goto'
+			'while','until','to','switch','step','return','repeat','loop','if','from','frame','for','end','elseif',
+			'else','default','debug','continue','clone','case','break','begin'
 			),
 		2 => array(
-			'null', 'false', 'break', 'true', 'function', 'enum', 'extern', 'inline'
+			'xor','whoami','type','sizeof','pointer','or','offset','not','neg','mod','id','dup','and','_ne','_lt',
+			'_le','_gt','_ge','_eq'
 			),
 		3 => array(
-			'printf', 'cout'
+			'setup_program','program','process','private','local','import','global','function','const',
+			'compiler_options'
 			),
 		4 => array(
-			'auto', 'char', 'const', 'double',  'float', 'int', 'long',
-			'register', 'short', 'signed', 'sizeof', 'static', 'string', 'struct',
-			'typedef', 'union', 'unsigned', 'void', 'volatile', 'wchar_t'
+			'word','struct','string','int','byte'
 			),
 		),
 	'SYMBOLS' => array(
-		'(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+		'(',')','[',']','=','+','-','*','/','!','%','^','&',':',';',',','<','>'
 		),
 	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => true,
+		GESHI_COMMENTS => false,
 		1 => false,
 		2 => false,
 		3 => false,
@@ -87,21 +76,20 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #000066;',
+			1 => 'color: #0040b1;',
+			2 => 'color: #000000;',
+			3 => 'color: #000066; font-weight: bold;',
 			4 => 'color: #993333;'
 			),
 		'COMMENTS' => array(
 			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #339933;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;'
+			0 => ''
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #44aa44;'
 			),
 		'STRINGS' => array(
 			0 => 'color: #ff0000;'
@@ -110,11 +98,10 @@ $language_data = array (
 			0 => 'color: #cc66cc;'
 			),
 		'METHODS' => array(
-			1 => 'color: #202020;',
-			2 => 'color: #202020;'
+			0 => 'color: #202020;',
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #44aa44;'
 			),
 		'REGEXPS' => array(
 			),
@@ -124,14 +111,11 @@ $language_data = array (
 	'URLS' => array(
 		1 => '',
 		2 => '',
-		3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAME}.html',
+		3 => '',
 		4 => ''
 		),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
-		1 => '.',
-		2 => '::'
-		),
+	'OOLANG' => false,
+	'OBJECT_SPLITTER' => '',
 	'REGEXPS' => array(
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,

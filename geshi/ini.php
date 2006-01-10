@@ -1,29 +1,23 @@
 <?php
 /*************************************************************************************
- * bash.php
+ * ini.php
  * --------
- * Author: Andreas Gohr (andi@splitbrain.org)
- * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
+ * Author: deguix (cevo_deguix@yahoo.com.br)
+ * Copyright: (c) 2005 deguix
  * Release Version: 1.0.7.5
  * CVS Revision Version: $Revision: 1.2 $
- * Date Started: 2004/08/20
+ * Date Started: 2005/03/27
  * Last Modified: $Date: 2006/01/10 21:18:16 $
  *
- * BASH language file for GeSHi.
+ * INI language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2004/11/27 (1.0.2)
- *  -  Added support for multiple object splitters
- * 2004/10/27 (1.0.1)
- *   -  Added support for URLs
- * 2004/08/20 (1.0.0)
+ * 2005/04/05 (1.0.0)
  *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2005/03/27)
  * -------------------------
- * * Get symbols working
- * * Highlight builtin vars
  *
  *************************************************************************************
  *
@@ -46,79 +40,78 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'Bash',
-	'COMMENT_SINGLE' => array(1 => '#'),
+	'LANG_NAME' => 'ini',
+	'COMMENT_SINGLE' => array(0 => ';'),
 	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
+	'QUOTEMARKS' => array(),
+	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
-		1 => array(
-			'case', 'do', 'done', 'elif', 'else', 'esac', 'fi', 'for', 'function',
-			'if', 'in', 'select', 'then', 'until', 'while', 'time'
-			),
-		3 => array(
-			'source', 'alias', 'bg', 'bind', 'break', 'builtin', 'cd', 'command',
-			'compgen', 'complete', 'continue', 'declare', 'typeset', 'dirs',
-			'disown', 'echo', 'enable', 'eval', 'exec', 'exit', 'export', 'fc',
-			'fg', 'getopts', 'hash', 'help', 'history', 'jobs', 'kill', 'let',
-			'local', 'logout', 'popd', 'printf', 'pushd', 'pwd', 'read', 'readonly',
-			'return', 'set', 'shift', 'shopt', 'suspend', 'test', 'times', 'trap',
-			'type', 'ulimit', 'umask', 'unalias', 'unset', 'wait'
-			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>'
+		'[', ']', '='
 		),
 	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false,
-		1 => true,
-		3 => true,
+		GESHI_COMMENTS => false
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			3 => 'color: #000066;'
+		    0 => ''
 			),
 		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
+			0 => 'color: #666666; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;'
+		    0 => ''
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+		    0 => ''
 			),
 		'STRINGS' => array(
-			0 => 'color: #ff0000;'
+		    0 => ''
 			),
 		'NUMBERS' => array(
-			0 => 'color: #cc66cc;'
+		    0 => ''
 			),
 		'METHODS' => array(
+		    0 => ''
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #000066; font-weight:bold;'
 			),
 		'REGEXPS' => array(
-			0 => 'color: #0000ff;',
-			1 => 'color: #0000ff;',
-			2 => 'color: #0000ff;'
+			0 => 'color: #000066; font-weight:bold;',
+			1 => 'color: #000099;',
+			2 => 'color: #660066;'
 			),
 		'SCRIPT' => array(
+		    0 => ''
 			)
 		),
 	'URLS' => array(
-		1 => '',
-		3 => ''
 		),
 	'OOLANG' => false,
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		0 => "\\$\\{[a-zA-Z_][a-zA-Z0-9_]*?\\}",
-		1 => "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-		2 => "([a-zA-Z_][a-zA-Z0-9_]*)="
+		0 => '\[.+\]',
+		1 => array(
+			GESHI_SEARCH => '([a-zA-Z0-9_]+\s*)=(.+)',
+			GESHI_REPLACE => '\\1',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '',
+			GESHI_AFTER => '=\\2'
+			),
+		2 => array(
+            // Evil hackery to get around GeSHi bug: <>" and ; are added so <span>s can be matched
+            // Explicit match on variable names because if a comment is before the first < of the span
+            // gets chewed up...
+			GESHI_SEARCH => '([<>";a-zA-Z0-9_]+\s*)=(.+)',
+			GESHI_REPLACE => '\\2',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '\\1=',
+			GESHI_AFTER => ''
+			)
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(

@@ -4,10 +4,10 @@
  * -----------
  * Author: Florian Knorn (floz@gmx.de)
  * Copyright: (c) 2004 Florian Knorn (http://www.florian-knorn.com)
- * Release Version: 1.0.0
- * CVS Revision Version: $Revision: 1.2 $
+ * Release Version: 1.0.7.5
+ * CVS Revision Version: $Revision: 1.3 $
  * Date Started: 2005/02/09
- * Last Modified: $Date: 2005/06/28 07:46:25 $
+ * Last Modified: $Date: 2006/01/10 21:18:17 $
  *
  * Matlab M-file language file for GeSHi. 
  *
