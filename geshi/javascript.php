@@ -5,9 +5,9 @@
  * Author: Ben Keen (ben.keen@gmail.com)
  * Copyright: (c) 2004 Ben Keen (ben.keen@gmail.com), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.3 $
+ * CVS Revision Version: $Revision: 1.4 $
  * Date Started: 2004/06/20
- * Last Modified: $Date: 2006/01/10 21:18:16 $
+ * Last Modified: $Date: 2006/03/22 10:24:38 $
  *
  * JavaScript language file for GeSHi.
  *

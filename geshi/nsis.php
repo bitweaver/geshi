@@ -5,9 +5,9 @@
  * Author: deguix (cevo_deguix@yahoo.com.br), Tux (http://tux.a4.cz/)
  * Copyright: (c) 2005 deguix, 2004 Tux (http://tux.a4.cz/), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.2 $
+ * CVS Revision Version: $Revision: 1.3 $
  * Date Started: 2005/06/17
- * Last Modified: $Date: 2006/01/10 21:18:17 $
+ * Last Modified: $Date: 2006/03/22 10:24:38 $
  *
  * Nullsoft Scriptable Install System language file for GeSHi.
  *
