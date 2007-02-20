@@ -4,10 +4,10 @@
  * ------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.2 $
+ * Release Version: 1.0.7.17
+ * CVS Revision Version: $Revision: 1.3 $
  * Date Started: 2004/08/30
- * Last Modified: $Date: 2006/01/10 21:18:17 $
+ * Last Modified: $Date: 2007/02/20 05:09:52 $
  *
  * Visual Basic language file for GeSHi.
  *

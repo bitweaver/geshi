@@ -4,10 +4,10 @@
  * -------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.3 $
+ * Release Version: 1.0.7.17
+ * CVS Revision Version: $Revision: 1.4 $
  * Date Started: 2004/07/10
- * Last Modified: $Date: 2006/03/22 10:24:38 $
+ * Last Modified: $Date: 2007/02/20 05:09:52 $
  *
  * LUA language file for GeSHi.
  *
@@ -45,7 +45,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'LUA',
+	'LANG_NAME' => 'Lua',
 	'COMMENT_SINGLE' => array(1 => "--"),
 	'COMMENT_MULTI' => array('--[[' => ']]'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -134,4 +134,3 @@ $language_data = array (
 );
 
 ?>
-

@@ -2,12 +2,12 @@
 /*************************************************************************************
  * blitzbasic.php
  * --------------
- * Author: Pàdraig O`Connel (info@moonsword.info)
- * Copyright: (c) 2005 Pàdraig O`Connel (http://moonsword.info)
- * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.2 $
+ * Author: Pï¿½draig O`Connel (info@moonsword.info)
+ * Copyright: (c) 2005 Pï¿½draig O`Connel (http://moonsword.info)
+ * Release Version: 1.0.7.17
+ * CVS Revision Version: $Revision: 1.3 $
  * Date Started: 16.10.2005
- * Last Modified: $Date: 2006/01/10 21:18:16 $
+ * Last Modified: $Date: 2007/02/20 05:09:51 $
  *
  * BlitzBasic language file for GeSHi.
  *
@@ -17,8 +17,10 @@
  *
  * CHANGES
  * -------
+ * 2005/12/28 (1.0.1)
+ *   -  Remove unnecessary style index for regexps
  * 2005/10/22 (1.0.0)
- *  -  First Release
+ *   -  First Release
  *
  * TODO (updated 2005/10/22)
  * -------------------------
@@ -48,7 +50,7 @@
  ************************************************************************************/
 
  $language_data = array (
-  'LANG_NAME' => 'BLITZ BASIC',
+  'LANG_NAME' => 'BlitzBasic',
   'COMMENT_SINGLE' => array(1 => ';'),
   'COMMENT_MULTI' => array(),
   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -159,7 +161,6 @@
       0 => 'color: #000066;'
       ),
     'REGEXPS' => array(
-      0 => 'font-weight: bold;'
       ),
     'SCRIPT' => array(
       0 => '',
@@ -174,7 +175,6 @@
   	1 => '\\'
 	),
   'REGEXPS' => array(
-
   ),
   'STRICT_MODE_APPLIES' => GESHI_NEVER,
   'SCRIPT_DELIMITERS' => array(),

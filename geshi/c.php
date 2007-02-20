@@ -2,14 +2,14 @@
 /*************************************************************************************
  * c.php
  * -----
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
+ * Author: Nigel McNie (nigel@geshi.org)
  * Contributors:
  *  - Jack Lloyd (lloyd@randombit.net)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.5
- * CVS Revision Version: $Revision: 1.2 $
+ * Release Version: 1.0.7.17
+ * CVS Revision Version: $Revision: 1.3 $
  * Date Started: 2004/06/04
- * Last Modified: $Date: 2006/01/10 21:18:16 $
+ * Last Modified: $Date: 2007/02/20 05:09:51 $
  *
  * C language file for GeSHi.
  *
