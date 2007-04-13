@@ -4,10 +4,8 @@
  * -------
  * Author: Iulian M
  * Copyright: (c) 2006 Iulian M
- * Release Version: 1.0.7.17
- * CVS Revision Version: $Revision: 1.1 $
+ * Release Version: 1.0.7.19
  * Date Started: 2004/09/27
- * Last Modified: $Date: 2007/02/20 05:09:53 $
  *
  * C++ language file for GeSHi, with QT extensions.
  *

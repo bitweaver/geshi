@@ -4,10 +4,8 @@
  * --------
  * Author: Stephan Klimek (http://www.initware.org)
  * Copyright: Stephan Klimek (http://www.initware.org)
- * Release Version: 1.0.7.17
- * CVS Revision Version: $Revision: 1.3 $
+ * Release Version: 1.0.7.19
  * Date Started: 2005/07/20
- * Last Modified: $Date: 2007/02/20 05:09:51 $
  *
  * AppleScript language file for GeSHi.
  *

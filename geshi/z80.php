@@ -1,33 +1,23 @@
 <?php
 /*************************************************************************************
- * c.php
- * -----
- * Author: Nigel McNie (nigel@geshi.org)
- * Contributors:
- *  - Jack Lloyd (lloyd@randombit.net)
- * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
+ * asm.php
+ * -------
+ * Author: Benny Baumann (BenBE@omorphia.de)
+ * Copyright: (c) 2007 Benny Baumann (http://www.omorphia.de/), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.19
- * Date Started: 2004/06/04
+ * Date Started: 2007/02/06
  *
- * C language file for GeSHi.
+ * ZiLOG Z80 Assembler language file for GeSHi.
+ * Syntax definition as commonly used with table assembler TASM32
+ * This file will contain some undocumented opcodes.
  *
  * CHANGES
  * -------
- * 2004/XX/XX (1.0.4)
- *   -  Added a couple of new keywords (Jack Lloyd)
- * 2004/11/27 (1.0.3)
- *   -  Added support for multiple object splitters
- * 2004/10/27 (1.0.2)
- *   -  Added support for URLs
- * 2004/08/05 (1.0.1)
- *   -  Added support for symbols
- * 2004/07/14 (1.0.0)
+ * 2007/02/06 (1.0.0)
  *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2007/02/06)
  * -------------------------
- *  -  Get a list of inbuilt functions to add (and explore C more
- *     to complete this rather bare language file
  *
  *************************************************************************************
  *
@@ -50,87 +40,88 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'C',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
+	'LANG_NAME' => 'ZiLOG Z80 Assembler',
+	'COMMENT_SINGLE' => array(1 => ';'),
+	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
+	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
+		/*CPU*/
 		1 => array(
-			'if', 'return', 'while', 'case', 'continue', 'default',
-			'do', 'else', 'for', 'switch', 'goto'
-			),
+			'adc','add'.'and','bit','call','ccf','cp','cpd','cpdr','cpir','cpi',
+			'cpl','daa','dec','di','djnz','ei','ex','exx','halt','im','in',
+			'in0','inc','ind','indr','inir','ini','jp','jr','ld','ldd','lddr',
+			'ldir','ldi','mlt','neg','nop','or','otdm','otdmr','otdr','otim',
+			'otimr','otir','out','out0','outd','outi','pop','push','res'.'ret',
+			'reti','retn','rl','rla','rlc','rlca','rld','rr','rra','rrc','rrca',
+			'rrd','rst','sbc','scf','set','sla','sl1','sll','slp','sra','srl',
+			'sub','tst','tstio','xor'
+		  ),
+		/*registers*/
 		2 => array(
-			'null', 'false', 'break', 'true', 'function', 'enum', 'extern', 'inline'
+			'a','b','c','d','e','h','l',
+			'af','bc','de','hl','ix','iy','sp',
+			'af\'','ixh','ixl','iyh','iyl'
 			),
+		/*Directive*/
 		3 => array(
-			'printf', 'cout'
-			),
-		4 => array(
-			'auto', 'char', 'const', 'double',  'float', 'int', 'long',
-			'register', 'short', 'signed', 'sizeof', 'static', 'string', 'struct',
-			'typedef', 'union', 'unsigned', 'void', 'volatile', 'wchar_t'
-			),
+			'#define','#endif','#else','#ifdef','#ifndef','#include','#undef',
+			'.db','.dd','.df','.dq','.dt','.dw','.end','.org','equ'
+		    ),
 		),
 	'SYMBOLS' => array(
-		'(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+		'[', ']', '(', ')', '?', '+', '-', '*', '/', '%', '$'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
 		1 => false,
 		2 => false,
 		3 => false,
-		4 => false,
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #000066;',
-			4 => 'color: #993333;'
+			1 => 'color: #0000ff; font-weight:bold;',
+			2 => 'color: #0000ff;',
+			3 => 'color: #46aa03; font-weight:bold;'
 			),
 		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #339933;',
-			'MULTI' => 'color: #808080; font-style: italic;'
+			1 => 'color: #adadad; font-style: italic;',
 			),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #0000ff;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #ff0000;'
+			0 => 'color: #7f007f;'
 			),
 		'NUMBERS' => array(
-			0 => 'color: #cc66cc;'
+			0 => 'color: #dd22dd;'
 			),
 		'METHODS' => array(
-			1 => 'color: #202020;',
-			2 => 'color: #202020;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #008000;'
 			),
 		'REGEXPS' => array(
+			0 => 'color: #22bbff;',
+			1 => 'color: #22bbff;',
+			2 => 'color: #993333;'
 			),
 		'SCRIPT' => array(
 			)
 		),
 	'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAME}.html',
-		4 => ''
 		),
-	'OOLANG' => true,
+	'OOLANG' => false,
 	'OBJECT_SPLITTERS' => array(
-		1 => '.',
-		2 => '::'
 		),
 	'REGEXPS' => array(
+		0 => '0[0-9a-fA-F][0-9a-fA-F]*[hH]',
+		1 => '\%[01]+[bB]',
+		2 => '^[_a-zA-Z][_a-zA-Z0-9]*\:'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
